@@ -64,29 +64,33 @@ class Product {
       query += ` ORDER BY p.price ${order.toUpperCase()}`;
     }
 
-    console.log(query);
-
     // Finalize query and return results
     const result = await db.query(query, queryValues);
     return result.rows;
+  }
 
-    // const result = await db.query(`
-    // SELECT p.id,
-    //   p.title,
-    //   com.name AS "company",
-    //   p.description,
-    //   p.featured,
-    //   cat.name AS "category",
-    //   p.image,
-    //   p.price,
-    //   p.shipping,
-    //   p.colors
-    // FROM products AS "p"
-    // JOIN companies AS "com" ON com.id = p.company_id
-    // JOIN categories AS "cat" ON cat.id = p.category_id
-    // ORDER BY p.id
-    // `);
-    // return result.rows;
+  /** Get single product by id */
+  static async get(id) {
+    const result = await db.query(
+      `
+      SELECT p.id,
+        p.title,
+        com.name AS "company",
+        p.description,
+        p.featured,
+        cat.name AS "category",
+        p.image,
+        p.price,
+        p.shipping,
+        p.colors
+      FROM products AS "p"
+      JOIN companies AS "com" ON com.id = p.company_id
+      JOIN categories AS "cat" ON cat.id = p.category_id
+      WHERE p.id = $1
+      `,
+      [id]
+    );
+    return result.rows[0];
   }
 }
 

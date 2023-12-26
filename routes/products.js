@@ -26,7 +26,8 @@ router.get("/", pagination(), async (req, res, next) => {
 /** Get single product */
 router.get("/:id", async (req, res, next) => {
   try {
-    return res.json(`get product id: ${req.params.id}`);
+    const product = await Product.get(req.params.id);
+    return res.json({ data: product, meta: {} });
   } catch (e) {
     return next(e);
   }

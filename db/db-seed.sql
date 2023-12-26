@@ -1,8 +1,8 @@
 -- Insert into users
 INSERT INTO users (username, email, password) VALUES 
-('admin', 'admin@example.com', 'password'),
-('user1', 'user1@example.com', 'password'),
-('user2', 'user2@example.com', 'password');
+('admin', 'admin@example.com', '$2b$12$Y.wvpKZZ9MvzzX8vHLxiX.YR8QEXG7e1fd2ACFOaFPhg0e0vyPvNy'),
+('user1', 'user1@example.com', '$2b$12$Y.wvpKZZ9MvzzX8vHLxiX.YR8QEXG7e1fd2ACFOaFPhg0e0vyPvNy'),
+('user2', 'user2@example.com', '$2b$12$Y.wvpKZZ9MvzzX8vHLxiX.YR8QEXG7e1fd2ACFOaFPhg0e0vyPvNy');
 
 -- Insert into companies
 INSERT INTO companies (name) VALUES 
