@@ -9,13 +9,9 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     return res.json("successful");
-  } catch (error) {
-    return next(error);
+  } catch (e) {
+    return next(e);
   }
 });
-
-
-
-
 
 export default router;
