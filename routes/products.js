@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", pagination(), async (req, res, next) => {
   try {
     const { startIdx, endIdx, generateMeta } = res.locals.pagination;
-    const products = await Product.getAll();
+    const products = await Product.getAll(req.query);
     const paginatedProducts = products.slice(startIdx, endIdx);
     return res.json({
       data: paginatedProducts,
