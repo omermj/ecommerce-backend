@@ -1,5 +1,5 @@
 import express from "express";
-import jsonschema from "jsonschema";
+import User from "../models/user.js";
 
 const router = express.Router();
 
@@ -8,7 +8,8 @@ const router = express.Router();
  */
 router.get("/", async (req, res, next) => {
   try {
-    return res.json("successful");
+    const users = await User.getAll();
+    return res.json({ data: users });
   } catch (e) {
     return next(e);
   }

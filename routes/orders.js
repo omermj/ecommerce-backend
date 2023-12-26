@@ -1,12 +1,14 @@
 import express from "express";
 import jsonschema from "jsonschema";
+import Order from "../models/order.js";
 
 const router = express.Router();
 
 /** Get all orders */
 router.get("/", async (req, res, next) => {
   try {
-    return res.json("get all orders");
+    const orders = await Order.getAll();
+    return res.json({ data: orders });
   } catch (e) {
     return next(e);
   }
