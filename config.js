@@ -13,7 +13,7 @@ const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
 const DB_NAME =
   process.env.NODE_ENV === "test"
     ? "ecommerce_db_test"
-    : process.env.DB_NAME || "ecommerce_db";
+    : process.env.DB_NAME || "ecommerce_db_dev";
 
 const DB_USER = process.env.DB_NAME || "postgres";
 const DB_HOST = process.env.DB_HOST || "localhost";
