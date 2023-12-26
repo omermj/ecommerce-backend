@@ -9,24 +9,14 @@ const router = express.Router();
  * Products can be filtered based on criteria
  * Request can be paginated
  */
-router.get("/", pagination(10), async (req, res, next) => {
+router.get("/", pagination(), async (req, res, next) => {
   try {
-    const { startIdx, endIdx } = res.locals.pagination;
+    const { startIdx, endIdx, generateMeta } = res.locals.pagination;
     const products = await Product.getAll();
     const paginatedProducts = products.slice(startIdx, endIdx);
-
     return res.json({
       data: paginatedProducts,
-      meta: {
-        pagination: {
-          page: +res.locals.pagination.page,
-          pageSize: +res.locals.pagination.pageSize,
-          pageCount: Math.ceil(
-            products.length / +res.locals.pagination.pageSize
-          ),
-          total: products.length,
-        },
-      },
+      meta: generateMeta(products),
     });
   } catch (e) {
     return next(e);

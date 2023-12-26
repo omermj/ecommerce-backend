@@ -4,7 +4,7 @@
  * @returns {function} - The middleware function.
  */
 
-const pagination = (pageSize) => {
+const pagination = (pageSize = 10) => {
   return (req, res, next) => {
     const pageNumber = parseInt(req.query.page) || 1;
     const startIdx = (pageNumber - 1) * pageSize;
@@ -15,6 +15,14 @@ const pagination = (pageSize) => {
       pageSize,
       startIdx,
       endIdx,
+      generateMeta: (data) => ({
+        pagination: {
+          page: pageNumber,
+          pageSize,
+          pageCount: Math.ceil(data.length / pageSize),
+          total: data.length,
+        },
+      }),
     };
 
     return next();

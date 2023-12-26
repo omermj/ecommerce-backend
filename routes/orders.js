@@ -1,14 +1,17 @@
 import express from "express";
 import jsonschema from "jsonschema";
 import Order from "../models/order.js";
+import pagination from "../middleware/pagination.js";
 
 const router = express.Router();
 
 /** Get all orders */
-router.get("/", async (req, res, next) => {
+router.get("/", pagination(), async (req, res, next) => {
   try {
+    const { startIdx, endIdx, generateMeta } = res.locals.pagination;
     const orders = await Order.getAll();
-    return res.json({ data: orders });
+    const paginatedOrders = orders.slice(startIdx, endIdx);
+    return res.json({ data: paginatedOrders, meta: generateMeta(orders) });
   } catch (e) {
     return next(e);
   }
