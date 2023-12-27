@@ -1,3 +1,5 @@
+"use strict";
+
 import express from "express";
 import jsonschema from "jsonschema";
 import Order from "../models/order.js";
@@ -29,7 +31,11 @@ router.get("/:id", async (req, res, next) => {
 /** Create order */
 router.post("/", async (req, res, next) => {
   try {
-    return res.json("created new order");
+    // validation
+
+    // create order
+    const order = await Order.create(req.body);
+    return res.status(201).json(order);
   } catch (e) {
     return next(e);
   }

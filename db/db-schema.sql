@@ -9,6 +9,7 @@ CREATE TABLE users (
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
+  address TEXT NOT NULL,
   FOREIGN KEY (username) REFERENCES users (username) ON DELETE SET NULL
 );
 
@@ -40,6 +41,24 @@ CREATE TABLE products (
 CREATE TABLE orders_products (
   order_id INTEGER NOT NULL,
   product_id INTEGER NOT NULL,
+  product_color VARCHAR(255) NOT NULL,
+  quantity INTEGER NOT NULL,
   FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
+
+CREATE TABLE carts (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
+);
+
+CREATE TABLE carts_products (
+  cart_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL,
+  product_color VARCHAR(255) NOT NULL,
+  quantity INTEGER NOT NULL,
+  FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE,
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
