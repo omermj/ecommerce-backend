@@ -33,6 +33,7 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
+    "pg-promise": "^11.5.4",
     "supertest": "^6.3.3"
   }
 }

@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Sofas"
+    },
+    {
+      "id": 2,
+      "name": "Beds"
+    },
+    {
+      "id": 3,
+      "name": "Tables"
+    },
+    {
+      "id": 4,
+      "name": "Chairs"
+    },
+    {
+      "id": 5,
+      "name": "Kids"
+    }
+  ]
+}

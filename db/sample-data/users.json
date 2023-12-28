@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "$2b$12$Y.wvpKZZ9MvzzX8vHLxiX.YR8QEXG7e1fd2ACFOaFPhg0e0vyPvNy"
+    },
+    {
+      "username": "user1",
+      "email": "user1@example.com",
+      "password": "$2b$12$Y.wvpKZZ9MvzzX8vHLxiX.YR8QEXG7e1fd2ACFOaFPhg0e0vyPvNy"
+    },
+    {
+      "username": "user2",
+      "email": "user2@example.com",
+      "password": "$2b$12$Y.wvpKZZ9MvzzX8vHLxiX.YR8QEXG7e1fd2ACFOaFPhg0e0vyPvNy"
+    }
+  ]
+}

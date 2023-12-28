@@ -9,6 +9,7 @@ CREATE TABLE users (
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
   address TEXT NOT NULL,
   FOREIGN KEY (username) REFERENCES users (username) ON DELETE SET NULL
 );

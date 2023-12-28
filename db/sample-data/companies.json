@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Modenza"
+    },
+    {
+      "id": 2,
+      "name": "Luxora"
+    },
+    {
+      "id": 3,
+      "name": "Artifex"
+    },
+    {
+      "id": 4,
+      "name": "Comfora"
+    },
+    {
+      "id": 5,
+      "name": "Homestead"
+    }
+  ]
+}
