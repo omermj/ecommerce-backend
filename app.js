@@ -9,7 +9,8 @@ import userRoutes from "./routes/users.js";
 import authRoutes from "./routes/auth.js";
 import productRoutes from "./routes/products.js";
 import orderRoutes from "./routes/orders.js";
-import { ExpressError, NotFoundError } from "./helpers/expressError.js";
+import { NotFoundError } from "./helpers/expressError.js";
+import { authenticateJWT } from "./middleware/auth.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(authenticateJWT);
 
 // routes
 app.use("/api/users", userRoutes);

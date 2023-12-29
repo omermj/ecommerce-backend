@@ -2,13 +2,14 @@
 
 import express from "express";
 import User from "../models/user.js";
+import { ensureAdmin } from "../middleware/auth.js";
 
 const router = express.Router();
 
 /** Get all users
- * ensureAdmin
+ * Admin only
  */
-router.get("/", async (req, res, next) => {
+router.get("/", ensureAdmin, async (req, res, next) => {
   try {
     const users = await User.getAll();
     return res.json({ data: users });

@@ -1,29 +1,39 @@
 import express from "express";
 import jsonschema from "jsonschema";
 import Product from "../models/product.js";
+import Company from "../models/company.js";
+import Category from "../models/category.js";
 import pagination from "../middleware/pagination.js";
 
 const router = express.Router();
 
 /** Get all products
- * Products can be filtered based on criteria
- * Request can be paginated
+ * Public route
  */
 router.get("/", pagination(), async (req, res, next) => {
   try {
+    // Get products
     const { startIdx, endIdx, generateMeta } = res.locals.pagination;
     const products = await Product.getAll(req.query);
     const paginatedProducts = products.slice(startIdx, endIdx);
+
+    // Get companies and categories
+    const companies = ["All", ...(await Company.getNames())];
+    const categories = ["All", ...(await Category.getNames())];
+
+    // Return response
     return res.json({
       data: paginatedProducts,
-      meta: generateMeta(products),
+      meta: { ...generateMeta(products), companies, categories },
     });
   } catch (e) {
     return next(e);
   }
 });
 
-/** Get single product */
+/** Get single product
+ * Public route
+ */
 router.get("/:id", async (req, res, next) => {
   try {
     const product = await Product.get(req.params.id);

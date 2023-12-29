@@ -4,14 +4,17 @@ import express from "express";
 import jsonschema from "jsonschema";
 import Order from "../models/order.js";
 import pagination from "../middleware/pagination.js";
+import { ensureLoggedIn } from "../middleware/auth.js";
 
 const router = express.Router();
 
-/** Get all orders */
-router.get("/", pagination(), async (req, res, next) => {
+/** Get all orders
+ * Requires user to be logged in
+ */
+router.get("/", ensureLoggedIn, pagination(), async (req, res, next) => {
   try {
     const { startIdx, endIdx, generateMeta } = res.locals.pagination;
-    const orders = await Order.getAll();
+    const orders = await Order.getAll(req.user.username);
     const paginatedOrders = orders.slice(startIdx, endIdx);
     return res.json({ data: paginatedOrders, meta: generateMeta(orders) });
   } catch (e) {
@@ -20,7 +23,7 @@ router.get("/", pagination(), async (req, res, next) => {
 });
 
 /** Get single order */
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", ensureLoggedIn, async (req, res, next) => {
   try {
     return res.json(`get order id: ${req.params.id}`);
   } catch (e) {
@@ -29,10 +32,9 @@ router.get("/:id", async (req, res, next) => {
 });
 
 /** Create order */
-router.post("/", async (req, res, next) => {
+router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
     // validation
-
     // create order
     const order = await Order.create(req.body);
     return res.status(201).json(order);

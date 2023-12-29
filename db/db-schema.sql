@@ -11,6 +11,7 @@ CREATE TABLE orders (
   username VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
   address TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (username) REFERENCES users (username) ON DELETE SET NULL
 );
 

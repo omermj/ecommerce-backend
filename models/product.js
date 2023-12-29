@@ -35,11 +35,11 @@ class Product {
       queryValues.push(`%${search}%`);
       whereExpressions.push(`p.title ILIKE $${queryValues.length}`);
     }
-    if (category) {
+    if (category && category !== "all") {
       queryValues.push(`%${category}%`);
       whereExpressions.push(`cat.name ILIKE $${queryValues.length}`);
     }
-    if (company) {
+    if (company && company !== "all") {
       queryValues.push(`%${company}%`);
       whereExpressions.push(`com.name ILIKE $${queryValues.length}`);
     }
