@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": ["data"],
+  "properties": {
+    "data": {
+      "type": "object",
+      "default": {},
+      "title": "The data Schema",
+      "required": ["username", "name", "address", "cartItems"],
+      "properties": {
+        "username": {
+          "type": "string",
+          "default": "",
+          "title": "The username Schema",
+          "examples": ["user2"]
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "title": "The name Schema",
+          "examples": ["User Two"]
+        },
+        "address": {
+          "type": "string",
+          "default": "",
+          "title": "The address Schema",
+          "examples": ["ON, Canada"]
+        },
+        "chargeTotal": {
+          "type": "number",
+          "default": 0.0,
+          "title": "The chargeTotal Schema",
+          "examples": [37898.9]
+        },
+        "orderTotal": {
+          "type": "string",
+          "default": "",
+          "title": "The orderTotal Schema",
+          "examples": ["$378.99"]
+        },
+        "numItemsInCart": {
+          "type": "integer",
+          "default": 0,
+          "title": "The numItemsInCart Schema",
+          "examples": [1]
+        },
+        "cartItems": {
+          "type": "array",
+          "default": [],
+          "title": "The cartItems Schema",
+          "items": {
+            "type": "object",
+            "default": {},
+            "title": "A Schema",
+            "required": ["productId", "productColor", "quantity"],
+            "properties": {
+              "cartID": {
+                "type": "string",
+                "default": "",
+                "title": "The cartID Schema",
+                "examples": ["12#FF5733"]
+              },
+              "productId": {
+                "type": "integer",
+                "default": 0,
+                "title": "The productId Schema",
+                "examples": [12]
+              },
+              "image": {
+                "type": "string",
+                "default": "",
+                "title": "The image Schema",
+                "examples": [
+                  "https://images.pexels.com/photos/5705090/pexels-photo-5705090.jpeg?auto=compress\u0026cs=tinysrgb\u0026w=1600"
+                ]
+              },
+              "title": {
+                "type": "string",
+                "default": "",
+                "title": "The title Schema",
+                "examples": ["chic chair"]
+              },
+              "price": {
+                "type": "string",
+                "default": "",
+                "title": "The price Schema",
+                "examples": ["33999"]
+              },
+              "company": {
+                "type": "string",
+                "default": "",
+                "title": "The company Schema",
+                "examples": ["Luxora"]
+              },
+              "productColor": {
+                "type": "string",
+                "default": "",
+                "title": "The productColor Schema",
+                "examples": ["#FF5733"]
+              },
+              "quantity": {
+                "type": "integer",
+                "default": 0,
+                "title": "The quantity Schema",
+                "examples": [1]
+              }
+            },
+            "examples": [
+              {
+                "cartID": "12#FF5733",
+                "productId": 12,
+                "image": "https://images.pexels.com/photos/5705090/pexels-photo-5705090.jpeg?auto=compress\u0026cs=tinysrgb\u0026w=1600",
+                "title": "chic chair",
+                "price": "33999",
+                "company": "Luxora",
+                "productColor": "#FF5733",
+                "quantity": 1
+              }
+            ]
+          },
+          "examples": [
+            [
+              {
+                "cartID": "12#FF5733",
+                "productId": 12,
+                "image": "https://images.pexels.com/photos/5705090/pexels-photo-5705090.jpeg?auto=compress\u0026cs=tinysrgb\u0026w=1600",
+                "title": "chic chair",
+                "price": "33999",
+                "company": "Luxora",
+                "productColor": "#FF5733",
+                "quantity": 1
+              }
+            ]
+          ]
+        }
+      },
+      "examples": [
+        {
+          "username": "user2",
+          "name": "User Two",
+          "address": "ON, Canada",
+          "chargeTotal": 37898.9,
+          "orderTotal": "$378.99",
+          "numItemsInCart": 1,
+          "cartItems": [
+            {
+              "cartID": "12#FF5733",
+              "productId": 12,
+              "image": "https://images.pexels.com/photos/5705090/pexels-photo-5705090.jpeg?auto=compress\u0026cs=tinysrgb\u0026w=1600",
+              "title": "chic chair",
+              "price": "33999",
+              "company": "Luxora",
+              "productColor": "#FF5733",
+              "quantity": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "examples": [
+    {
+      "data": {
+        "username": "user2",
+        "name": "User Two",
+        "address": "ON, Canada",
+        "chargeTotal": 37898.9,
+        "orderTotal": "$378.99",
+        "numItemsInCart": 1,
+        "cartItems": [
+          {
+            "cartID": "12#FF5733",
+            "productId": 12,
+            "image": "https://images.pexels.com/photos/5705090/pexels-photo-5705090.jpeg?auto=compress\u0026cs=tinysrgb\u0026w=1600",
+            "title": "chic chair",
+            "price": "33999",
+            "company": "Luxora",
+            "productColor": "#FF5733",
+            "quantity": 1
+          }
+        ]
+      }
+    }
+  ]
+}

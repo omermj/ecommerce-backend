@@ -53,7 +53,6 @@ class Order {
   /** Create new order */
   static async create({ data }) {
     const { name, username, address, cartItems } = data;
-    console.log("cartItems", cartItems);
     // Add order to orders table
     const orderResult = await db.query(
       `
@@ -63,7 +62,7 @@ class Order {
       `,
       [username, name, address]
     );
-    console.log("orderId", orderResult.rows[0].id);
+
     // Add cart items to order_products table
     const orderProducts = cartItems.map(async (item) => {
       return await db.query(

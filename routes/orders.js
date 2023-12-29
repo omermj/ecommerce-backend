@@ -2,6 +2,7 @@
 
 import express from "express";
 import jsonschema from "jsonschema";
+import newOrderSchema from "../schemas/newOrder.json" assert { type: "json" };
 import Order from "../models/order.js";
 import pagination from "../middleware/pagination.js";
 import { ensureLoggedIn } from "../middleware/auth.js";
@@ -35,6 +36,11 @@ router.get("/:id", ensureLoggedIn, async (req, res, next) => {
 router.post("/", ensureLoggedIn, async (req, res, next) => {
   try {
     // validation
+    const validator = jsonschema.validate(req.body, newOrderSchema);
+    if (validator.valid === false) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
     // create order
     const order = await Order.create(req.body);
     return res.status(201).json(order);
