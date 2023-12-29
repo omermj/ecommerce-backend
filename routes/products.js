@@ -15,6 +15,7 @@ router.get("/", pagination(), async (req, res, next) => {
     // Get products
     const { startIdx, endIdx, generateMeta } = res.locals.pagination;
     const products = await Product.getAll(req.query);
+
     const paginatedProducts = products.slice(startIdx, endIdx);
 
     // Get companies and categories

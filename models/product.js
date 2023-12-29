@@ -9,7 +9,6 @@ class Product {
     // get filters
     const { search, category, company, price, featured, shipping, order } =
       filters;
-
     const whereExpressions = [];
     const queryValues = [];
 
@@ -35,11 +34,11 @@ class Product {
       queryValues.push(`%${search}%`);
       whereExpressions.push(`p.title ILIKE $${queryValues.length}`);
     }
-    if (category && category !== "all") {
+    if (category && category !== "All") {
       queryValues.push(`%${category}%`);
       whereExpressions.push(`cat.name ILIKE $${queryValues.length}`);
     }
-    if (company && company !== "all") {
+    if (company && company !== "All") {
       queryValues.push(`%${company}%`);
       whereExpressions.push(`com.name ILIKE $${queryValues.length}`);
     }
@@ -58,10 +57,24 @@ class Product {
     if (whereExpressions.length > 0) {
       query += " WHERE " + whereExpressions.join(" AND ");
     }
-
+    console.log(order);
     // Add ORDER BY clause
-    if (order === "asc" || order === "desc") {
-      query += ` ORDER BY p.price ${order.toUpperCase()}`;
+    switch (order) {
+      case "A-Z":
+        query += ` ORDER BY p.title`;
+        break;
+      case "Z-A":
+        query += ` ORDER BY p.title DESC`;
+        break;
+      case "Price Low-High":
+        query += ` ORDER BY p.price`;
+        break;
+      case "Price High-Low":
+        query += ` ORDER BY p.price DESC`;
+        break;
+      default:
+        query += ` ORDER BY p.title`;
+        break;
     }
 
     // Finalize query and return results
