@@ -9,6 +9,7 @@ import userRoutes from "./routes/users.js";
 import authRoutes from "./routes/auth.js";
 import productRoutes from "./routes/products.js";
 import orderRoutes from "./routes/orders.js";
+import cartRoutes from "./routes/carts.js";
 import { NotFoundError } from "./helpers/expressError.js";
 import { authenticateJWT } from "./middleware/auth.js";
 
@@ -25,6 +26,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/cart", cartRoutes);
 
 /** Handle 404 errors */
 app.use((req, res, next) => {

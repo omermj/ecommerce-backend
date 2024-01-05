@@ -41,14 +41,47 @@ class Cart {
   }
 
   /** Update cart with data */
+  static async update(id, data) {}
 
   /** Delete cart by id */
 
   /** Add product to cart */
   static async addProduct({ cartId, productId, quantity, productColor }) {
+    // if product already exists in cart, update quantity
+    const existingProduct = await db.query(
+      `SELECT cart_id AS "cartId",
+        product_id AS "productId",
+        quantity,
+        product_color AS "productColor" 
+      FROM carts_products 
+      WHERE cart_id = $1 AND product_id = $2 AND product_color = $3`,
+      [cartId, productId, productColor]
+    );
+    if (existingProduct.rows[0]) {
+      const result = await db.query(
+        `
+        UPDATE carts_products
+        SET quantity = $1
+        WHERE cart_id = $2 AND product_id = $3 AND product_color = $4
+        RETURNING cart_id AS "cartId",
+          product_id AS "productId",
+          quantity,
+          product_color AS "productColor"
+        `,
+        [
+          +existingProduct.rows[0].quantity + quantity,
+          cartId,
+          productId,
+          productColor,
+        ]
+      );
+      return result.rows[0];
+    }
+
+    // else, insert new product into cart
     const result = await db.query(
       `
-      INSERT INTO cart_products (cart_id, product_id, quantity, product_color)
+      INSERT INTO carts_products (cart_id, product_id, quantity, product_color)
       VALUES ($1, $2, $3, $4)
       RETURNING cart_id AS "cartId",
         product_id AS "productId",

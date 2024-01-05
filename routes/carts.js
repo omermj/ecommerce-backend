@@ -29,3 +29,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+/** Add product to cart */
+router.post("/:id/products", async (req, res, next) => {
+  try {
+    const cart = await Cart.addProduct({
+      cartId: req.params.id,
+      productId: req.body.productId,
+      quantity: req.body.quantity,
+      productColor: req.body.productColor,
+    });
+    return res.status(201).json({ data: cart });
+  } catch (e) {
+    return next(e);
+  }
+});
+
+export default router;

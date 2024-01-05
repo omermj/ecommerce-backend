@@ -57,7 +57,6 @@ class Product {
     if (whereExpressions.length > 0) {
       query += " WHERE " + whereExpressions.join(" AND ");
     }
-    console.log(order);
     // Add ORDER BY clause
     switch (order) {
       case "A-Z":

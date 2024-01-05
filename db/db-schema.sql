@@ -51,7 +51,7 @@ CREATE TABLE orders_products (
 
 CREATE TABLE carts (
   id SERIAL PRIMARY KEY,
-  username VARCHAR(255) NOT NULL,
+  username VARCHAR(255),
   FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 );
 
